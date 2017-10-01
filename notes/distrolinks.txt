@@ -24,6 +24,9 @@ Ubuntu - 2x (amd64, i386) for each
 			KDE
 
 			Ignored: LMDE (LinuxMint Debian Edition)
+
+		ZorinOS
+			Download URL: https://zorinos.com/download/
 		
 	GRML - 2x (amd64, i386) for each
 		Download URL: https://grml.org/download/

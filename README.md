@@ -37,7 +37,7 @@ Remastering ISOs is *currently* supported **ONLY for Ubuntu ISOs**. This include
 
 - Ubuntu (*standard* Unity)
 - Official Ubuntu flavors such as Ubuntu Mate, xubuntu lubuntu, kubuntu, edubuntu etc)
-- Ubuntu derivatives such as Linux Mint (only Linux Mint tested)
+- Ubuntu derivatives (only Linux Mint and Zorin OS tested)
 
 In the future, I intend to support major distributions, such as Fedora, Arch, GRML, Red Hat etc.
 
@@ -58,6 +58,7 @@ Multiboot supports the following distributions within as ISOs:
 
 - Ubuntu - all official flavors
 - Linux Mint
+- Zorin OS
 - GRML
 - Debian
 

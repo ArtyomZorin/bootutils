@@ -162,6 +162,17 @@ Identifying distro from an ISO:
         vmlinuz, initrd under /casper
         Rest like Ubuntu
 
+    ZorinOS
+        Identification:
+            Ubuntu-derivative, but does NOT have /ubuntu dir
+            /README.diskdefines file contains line looking like:
+                #define DISKNAME  Zorin OS 12.2 Core  64 bit
+            info in /.disk/info contains
+                Zorin OS 12.2 Core 64 bit
+            Look for info starting with 'Zorin OS'
+        vmlinuz, initrd under /casper
+        Rest like Ubuntu
+
     TinyCoreLinux
         Identification
             Debian-derivative, but does not have explicit dir /file

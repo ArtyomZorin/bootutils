@@ -164,6 +164,17 @@ Identifying distro from an ISO:
         vmlinuz, initrd under /casper
         Rest like Ubuntu
 
+    ZorinOS
+        Identification:
+            Ubuntu-derivative, but does NOT have /ubuntu dir
+            /README.diskdefines file contains line looking like:
+                #define DISKNAME  Zorin OS 12.2 Core  64 bit
+            info in /.disk/info contains
+                Zorin OS 12.2 Core 64 bit
+            Look for info starting with 'Zorin OS'
+        vmlinuz, initrd under /casper
+        Rest like Ubuntu
+
     TinyCoreLinux
         Identification
             Debian-derivative, but does not have explicit dir /file
@@ -341,6 +352,19 @@ def get_distro(iso_path):
     except:
         pass
 
+    # ZorinOS
+    '''
+    info in /.disk/info contains
+        Zorin OS 12.2 Core 64 bit
+    Look for info starting with 'Zorin OS'
+    '''
+    try:
+        s = iso.record('.disk', 'info').content
+        if s.startswith('Zorin OS'):
+            return('zorinos')
+    except:
+        pass
+
     # TinyCoreLinux
     '''
     Debian-derivative, but does not have identifying dir /file
@@ -378,6 +402,7 @@ def get_instance(iso_path):
         'grml': GRMLISO,
         'knoppix': KnoppixISO,
         'linuxmint': LinuxMintISO,
+        'zorinos': ZorinOSISO,
         'tinycore': TinyCoreISO,
         'puppy': PuppyISO,
         'generic': GenericLinuxISO
@@ -434,6 +459,7 @@ class LinuxISO(object):
         - Ubuntu, official flavours
         - Unofficial Ubuntu flavours:
             - LinuxMint
+            - ZorinOS
         - Standard Debian - Jessie 8.0 stable tested
         - GRML - including combined 32-bit and 64-bit:
             - Daily builds work
@@ -462,7 +488,7 @@ class LinuxISO(object):
     '''
     KNOWN_DISTROS = [
         'ubuntu', 'debian', 'knoppix', 'grml', 'linuxmint',
-        'tinycore', 'puppy', 'generic'
+        'zorinos', 'tinycore', 'puppy', 'generic'
     ]
 
     def __init__(self, iso_path, distro='generic'):
@@ -611,6 +637,10 @@ class LinuxMintISO(UbuntuISO):
     pass
 
 
+class ZorinOSISO(UbuntuISO):
+    pass
+
+
 class TinyCoreISO(DebianISO):
     def get_distinfo(self):
         '''
@@ -652,6 +682,7 @@ if __name__ == '__main__':
     iso_base = '/mnt/auto/iso'
     l = [
         'linuxmint/linuxmint-18.1-cinnamon-64bit.iso',
+        'zorinos/Zorin-OS-12.2-Core-64.iso',
         'tinycorelinux/CorePure64-8.0.iso',
         'tinycorelinux/microcore-current.iso',
         'grml/grml32-full_2014.03.iso',
